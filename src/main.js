@@ -1,4 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import axios from "axios";
+import VueAxios from "vue-axios";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
+import '@/assets/css/tailwind.css';
 
-createApp(App).mount('#app')
+
+const app = createApp(App)
+app.use(VueAxios, axios)
+app.provide('axios', app.config.globalProperties.axios)
+app.mount('#app')
