@@ -9,12 +9,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      
-      colors: {
-        sky: {
-          100:"rgb(224 242 254)",
-        }
-      },
     },
   },
   variants: {},

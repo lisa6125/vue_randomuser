@@ -63,8 +63,6 @@ export default {
         ) 
         .then((response) => {
           userData.value = response.data.results;
-
-          console.log(response.data);
         });
     }
     return { getUser,userData,nowPage,clickPage,pageChang,nowListStatus,changeListStatus,openModuleStatus,userInfo,changeModuleStatus,getUserInfo };
