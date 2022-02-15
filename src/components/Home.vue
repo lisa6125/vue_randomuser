@@ -1,13 +1,6 @@
 <template>
   <div class="text-3xl font-bold underine bg-gray-100">
-    <div class="nav bg-blue-100 flex justify-end px-8 py-5">
-      <div class="nav-icon mr-3 text-blue-300 cursor-pointer hover:text-blue-400" :class="{'text-blue-500':nowListStatus === 'group'}" @click="changeListStatus('group')">
-        <i class="fas fa-th-large"></i>
-      </div>
-      <div class="nav-icon text-blue-300 cursor-pointer hover:text-blue-400" :class="{'text-blue-500':nowListStatus === 'list'}" @click="changeListStatus('list')">
-        <i class="fas fa-th-list"></i>
-      </div>
-    </div>
+    <Navbar :nowListStatus="nowListStatus" @changeListStatus ="changeListStatus"/>
     <div class="xl:w-3/4 md:w-full px-10 pt-10 mx-auto">
       <div class="container mx-auto">
         <div
@@ -117,7 +110,7 @@
     </div>
 <!-- open module -->
     <div class="mask" v-if="openModuleStatus" @click.self="changeModuleStatus(false)">
-      <div class="close-btn" @click="changeModuleStatus(false)">
+      <div class="close-btn cursor-pointer" @click="changeModuleStatus(false)">
         <i class="fa-solid fa-xmark"></i>
       </div>
       <div class="userInfo w-3/4 sm:w-3/4 lg:w-3/5">
@@ -145,11 +138,12 @@
 
 <script>
 import { onMounted,ref } from "vue";
+import Navbar from './Navbar.vue';
 import { inject } from "vue";
 
 export default {
-name: "Home",
-
+  name: "Home",
+  components:{Navbar},
   setup() {
     const axios = inject("axios");
     const userData = ref([]); 
