@@ -4,30 +4,7 @@
     <UserContent :userData="userData" :nowListStatus="nowListStatus" @getUserInfo="getUserInfo"/>
     <Pagination :nowPage="nowPage" @clickPage="clickPage" @pageChang="pageChang"/>
 <!-- open module -->
-    <div class="mask" v-if="openModuleStatus" @click.self="changeModuleStatus(false)">
-      <div class="close-btn cursor-pointer" @click="changeModuleStatus(false)">
-        <i class="fa-solid fa-xmark"></i>
-      </div>
-      <div class="userInfo w-3/4 sm:w-3/4 lg:w-3/5">
-        <div class="rounded overflow-hidden shadow-md bg-white">
-          <div class="absolute -mt-20 w-full flex justify-center">
-            <div class="h-32 w-32">
-              <img :src="userInfo.picture.large" class="rounded-full object-cover h-full w-full shadow-md">
-            </div>
-          </div>
-          <div class="px-6 mt-16">
-            <div class="font-bold text-3xl text-center mb-1 border-b-2">{{userInfo.name.first}} {{userInfo.name.last}} <span class="ml-2 text-xl text-gray-500">{{userInfo.dob.age}}</span></div>
-            <div class="user-detail flex flex-col justify-center items-start text-xl pt-4 pb-5 break-words">
-            <p>gender:{{userInfo.gender}}</p>
-            <p>country:{{userInfo.location.country}}</p>
-            <p>email:{{userInfo.email}}</p>
-            <p>phone:{{userInfo.phone}}</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+    <UserModule :openModuleStatus="openModuleStatus" :userInfo="userInfo" @changeModuleStatus="changeModuleStatus"/>
   </div>
 </template>
 
@@ -36,13 +13,15 @@ import { onMounted,ref } from "vue";
 import Navbar from './Navbar.vue';
 import UserContent from './UserContent.vue';
 import Pagination from './Pagination.vue';
+import UserModule from './UserModule.vue';
+
 
 
 import { inject } from "vue";
 
 export default {
   name: "Home",
-  components:{Navbar,UserContent,Pagination},
+  components:{Navbar,UserContent,Pagination,UserModule},
   setup() {
     const axios = inject("axios");
     const userData = ref([]); 
@@ -94,7 +73,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 h3 {
   margin: 40px 0 0;
 }
